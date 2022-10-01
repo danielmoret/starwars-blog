@@ -1,26 +1,49 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { CardCharacter } from "../component/CardCharacter";
+import { CardPlanet } from "../component/CardPlanet";
+import { CardVehicle } from "../component/CardVehicle.js";
+
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://github.com/4GeeksAcademy/react-flask-hello/tree/95e0540bd1422249c3004f149825285118594325/docs">
-					Read documentation
-				</a>
-			</p>
-		</div>
-	);
+  useEffect(() => {
+    actions.getCharacters();
+    actions.getPlanets();
+    actions.getVehicles();
+  },[])
+
+   
+
+  return (
+    <div className="container">
+      <h2 className="text-danger mt-5">Characters</h2>
+      <div id="carousel">
+        <div id="characters">
+          {store.characters.map(character =>{
+			return <CardCharacter item={character} key={character.uid}/>
+		  })}
+        </div>
+      </div>
+      <h2 className="text-danger mt-5">Planets</h2>
+      <div id="carousel">
+        <div id="characters">
+          {store.planets.map(planet =>{
+			return <CardPlanet item={planet} key={planet.uid}/>
+		  })}
+        </div>
+      </div>
+      <h2 className="text-danger mt-5">Vehicles</h2>
+      <div id="carousel">
+        <div id="characters">
+          {store.vehicles.map(vehicle =>{
+			return <CardVehicle item={vehicle} key={vehicle.uid}/>
+		  })}
+        </div>
+      </div>
+    </div>
+  );
 };

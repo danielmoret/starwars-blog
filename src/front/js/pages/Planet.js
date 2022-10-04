@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext} from "react";
 import { useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+import rigoImageUrl from "../../img/placeholder.jpg";
 
 export const Planet = (props) => {
-  const [planet, setPlanet] = useState();
+  const { store, actions } = useContext(Context);
   const params = useParams();
-
-  useEffect(() => {
-    const apiURL = `https://www.swapi.tech/api/planets/${params.id}`;
-
-    fetch(apiURL)
-      .then((respond) => {
-        if (respond.ok) {
-          return respond.json();
-        }
-        throw new Error("Algo salio mal");
-      })
-      .then((data) => setPlanet(data.result))
-      .catch((err) => console.error(err));
-  }, []);
-  
 
 
   return (
     <React.Fragment>
-      {planet ? (
-        <div className="container">
+    {store.planets.map((planet) => {
+      if (planet.uid == params.id){
+        return(
+          <div className="container" key={planet._id}>
           <div className="row d-flex justify-content-evenly">
             <img
-              src={`https://starwars-visualguide.com/assets/img/planets/${params.id}.jpg`}
+              src={planet.uid != 1 ? `https://starwars-visualguide.com/assets/img/planets/${params.id}.jpg`: rigoImageUrl}
               className="img-description col-6"
               alt={planet.properties.name}
             />
@@ -70,7 +59,9 @@ export const Planet = (props) => {
             </div>
           </div>
         </div>
-      ) : null}
+        )
+      }
+    })}
     </React.Fragment>
   );
 };

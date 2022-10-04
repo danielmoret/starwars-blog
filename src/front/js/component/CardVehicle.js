@@ -1,25 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const CardVehicle = (props) => {
-  const [vehicle, setVehicle] = useState([]);
-
-  useEffect(() => {
-    const apiURL = `https://www.swapi.tech/api/vehicles/${props.item.uid}`;
-
-    fetch(apiURL)
-      .then((respond) => {
-        if (respond.ok) {
-          return respond.json();
-        }
-        throw new Error("Algo salio mal");
-      })
-      .then((data) => setVehicle(data.result.properties))
-      .catch((err) => console.error(err));
-  }, []);
-
+  const { store, actions } = useContext(Context);
   return (
     <div className="card me-5" style={{ minWidth: "14rem" }}>
       <img
@@ -27,17 +11,17 @@ export const CardVehicle = (props) => {
         className="card-img-top"
         alt="props.item.name"
       />
-      <div className="card-body">
-        <h5 className="card-title">{props.item.name}</h5>
+      <div className="card-body d-flex flex-column justify-content-between">
+        <h5 className="card-title">{props.item.properties.name}</h5>
         <p className="card-text">
           <p>
-            <strong>Name:</strong> {vehicle.name}
+            <strong>Model:</strong> {props.item.properties.model}
           </p>
           <p>
-            <strong>Model:</strong> {vehicle.model}
+            <strong>Passengers:</strong> {props.item.properties.passengers}
           </p>
           <p>
-            <strong>Cost:</strong> {vehicle.cost_in_credits}
+            <strong>Cost:</strong> {props.item.properties.cost_in_credits}
           </p>
         </p>
         <div className="buttons-card">
@@ -47,9 +31,14 @@ export const CardVehicle = (props) => {
           >
             Learn more!
           </Link>
-          <Link to="#" className="btn btn-outline-warning">
-            <FontAwesomeIcon icon={faHeart} />
-          </Link>
+          <button
+            className={
+              store.favorites.find((fav) => fav._id == props.item._id)
+                ? "btn btn-outline-warning fas fa-heart"
+                : "btn btn-outline-warning far fa-heart"
+            }
+            onClick={(e) => actions.getUpdateFavorite(props.item)}
+          ></button>
         </div>
       </div>
     </div>

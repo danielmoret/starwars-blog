@@ -1,36 +1,58 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
-*,*::before, *::after{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body{
-	height: 100vw;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #carousel {
-	height: auto;
-	width: 100%;
-	border: none;
-	background: white;
-	overflow-x: scroll;
+  height: auto;
+  width: 100%;
+  border: none;
+  background: white;
+  overflow-x: scroll;
 }
 #characters {
-	height: auto;
-	display: flex;
+  height: auto;
+  display: flex;
 }
 
-.buttons-card{
-	display: flex;
-	justify-content: space-between;
+.buttons-card {
+  display: flex;
+  justify-content: space-between;
 }
 
-.img-description{
-	width: 400px;
+.img-description {
+  width: 400px;
 }
 
+.btn-dropdown {
+  border: 0;
+  background: none;
+}
 
+.input-search {
+  border: none;
+  border-bottom: 2px solid black;
+}
 
+.input-search:focus {
+  outline: none;
+}
+
+.input-search:active {
+  outline: none;
+}
+
+.suggestions {
+  background-color: rgb(228, 228, 228);
+}
+
+.suggestions a {
+  text-decoration: none;
+  color: black;
+}

@@ -9,14 +9,14 @@
   box-sizing: border-box;
 }
 
-#carousel {
+.carousel {
   height: auto;
   width: 100%;
   border: none;
   background: white;
   overflow-x: scroll;
 }
-#characters {
+.characters {
   height: auto;
   display: flex;
 }

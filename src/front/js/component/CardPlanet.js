@@ -18,14 +18,14 @@ export const CardPlanet = (props) => {
       />
       <div className="card-body d-flex flex-column justify-content-around">
         <h5 className="card-title">{props.item.properties.name}</h5>
-        <p className="card-text">
+        <div className="card-text">
           <p>
             <strong>Population:</strong> {props.item.properties.population}
           </p>
           <p>
             <strong>Terrain:</strong> {props.item.properties.terrain}
           </p>
-        </p>
+        </div>
         <div className="buttons-card">
           <Link
             to={`/planets/${props.item.uid}`}

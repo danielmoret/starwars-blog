@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { Planet } from "../pages/Planet";
 import { Context } from "../store/appContext";
 
 export const Search = () => {
@@ -50,7 +49,7 @@ export const Search = () => {
           value={inputValue}
           className="input-search"
           onChange={(event) => {
-            onChageHandler(event.target.value);
+            onChageHandler(event.target.value.trim());
           }}
         ></input>
         <div className="suggestions">

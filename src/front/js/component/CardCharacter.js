@@ -14,7 +14,7 @@ export const CardCharacter = (props) => {
       />
       <div className="card-body d-flex flex-column justify-content-between">
         <h5 className="card-title">{props.item.properties.name}</h5>
-        <p className="card-text">
+        <div className="card-text">
           <p>
             <strong>Gender:</strong> {props.item.properties.gender}
           </p>
@@ -25,7 +25,7 @@ export const CardCharacter = (props) => {
             <strong>Eye-color: </strong>
             {props.item.properties.eye_color}
           </p>
-        </p>
+        </div>
         <div className="buttons-card">
           <Link
             to={`/people/${props.item.uid}`}

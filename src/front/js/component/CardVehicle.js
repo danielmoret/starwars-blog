@@ -13,7 +13,7 @@ export const CardVehicle = (props) => {
       />
       <div className="card-body d-flex flex-column justify-content-between">
         <h5 className="card-title">{props.item.properties.name}</h5>
-        <p className="card-text">
+        <div className="card-text">
           <p>
             <strong>Model:</strong> {props.item.properties.model}
           </p>
@@ -23,7 +23,7 @@ export const CardVehicle = (props) => {
           <p>
             <strong>Cost:</strong> {props.item.properties.cost_in_credits}
           </p>
-        </p>
+        </div>
         <div className="buttons-card">
           <Link
             to={`/vehicles/${props.item.uid}`}
